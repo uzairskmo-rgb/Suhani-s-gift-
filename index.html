@@ -1,1 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something 🤍</title>
 
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #fff;
+    background:
+        radial-gradient(circle at 50% 20%, #32145c 0%, #170b2c 35%, #050507 75%);
+}
+
+/* ---------------- SCREENS ---------------- */
+
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    text-align: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.04);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+/* ---------------- STARS ---------------- */
+
+.star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: #d9b76e;
+    border-radius: 50%;
+    opacity: .65;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .15; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+/* ---------------- INTRO ---------------- */
+
+.intro-text {
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #f4e8ff;
+    margin-bottom: 42px;
+    text-shadow: 0 0 18px rgba(150, 75, 255, .5);
+}
+
+.intro-sub {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #b9a6c9;
+    letter-spacing: 2px;
+}
+
+/* ---------------- ENVELOPE ---------------- */
+
+.envelope {
+    width: 275px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,.6));
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    border-radius: 7px;
+
+    background:
+        linear-gradient(135deg, #17131f, #0b0a0e);
+
+    border: 1px solid #8d6a2f;
+    box-shadow:
+        inset 0 0 25px rgba(120,70,180,.12),
+        0 0 35px rgba(100,40,180,.2);
+}
+
+.envelope-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(32deg,
+        transparent 49%,
+        #6d5030 50%,
+        transparent 51%),
+
+        linear-gradient(-32deg,
+        transparent 49%,
+        #6d5030 50%,
+        transparent 51%);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 137px solid transparent;
+    border-right: 137px solid transparent;
+    border-top: 105px solid #21162e;
+
+    transform-origin: top;
+    transition: transform 1s ease;
+
+    z-index: 4;
+
+    filter: drop-shadow(0 3px 2px rgba(0,0,0,.3));
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.seal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 55px;
+    height: 55px;
+
+    transform: translate(-50%, -10%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+        #f1d28a,
+        #b98725 65%,
+        #6e4812);
+
+    border: 2px solid #f5dda0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    z-index: 6;
+
+    box-shadow:
+        0 0 15px rgba(224,175,69,.5),
+        inset 0 0 10px rgba(255,255,255,.3);
+
+    transition: opacity .4s;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+/* ---------------- BUTTON ---------------- */
+
+.button {
+    margin-top: 36px;
+
+    padding: 14px 29px;
+
+    border: 1px solid #b8892e;
+    border-radius: 30px;
+
+    background:
+        linear-gradient(135deg,
+        rgba(105,48,170,.4),
+        rgba(20,10,30,.7));
+
+    color: #f6df9b;
+
+    font-family: inherit;
+    font-size: 15px;
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px rgba(117,53,190,.2);
+
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 28px rgba(146,72,220,.4);
+
+    background:
+        linear-gradient(135deg,
+        rgba(130,65,205,.5),
+        rgba(35,15,50,.8));
+}
+
+/* ---------------- LETTER ---------------- */
+
+.letter {
+    max-width: 330px;
+
+    padding: 38px 27px;
+
+    background:
+        linear-gradient(145deg,
+        #17131d,
+        #0a090d);
+
+    border: 1px solid #9a7128;
+
+    border-radius: 5px;
+
+    color: #f3eaff;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.6),
+        0 0 35px rgba(91,39,150,.2);
+
+    transform: rotate(-1deg);
+}
+
+.letter h2 {
+    margin-bottom: 20px;
+
+    font-size: 26px;
+    font-weight: normal;
+
+    color: #e8c875;
+}
+
+.letter p {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #ded2e8;
+}
+
+/* ---------------- CAKE ---------------- */
+
+.cake-title {
+    font-size: 25px;
+    color: #e9ca78;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 20px rgba(210,160,50,.4);
+}
+
+.cake-area {
+    position: relative;
+
+    width: 250px;
+    height: 280px;
+
+    margin-bottom: 10px;
+}
+
+.cake {
+    position: absolute;
+
+    bottom: 25px;
+    left: 25px;
+
+    width: 200px;
+    height: 105px;
+
+    background:
+        linear-gradient(180deg,
+        #4d216e,
+        #29103d);
+
+    border-radius: 12px 12px 20px 20px;
+
+    border: 1px solid #9b6c28;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.5),
+        inset 0 -15px rgba(0,0,0,.15);
+}
+
+.cake::before {
+    content: "";
+
+    position: absolute;
+
+    top: -30px;
+    left: 0;
+
+    width: 200px;
+    height: 45px;
+
+    background:
+        radial-gradient(circle,
+        #fff5e1,
+        #dfc49c);
+
+    border-radius: 50%;
+
+    border: 1px solid #b88a3c;
+}
+
+.cream {
+    position: absolute;
+
+    top: 5px;
+    left: 0;
+
+    width: 200px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #fff5e4;
+}
+
+/* CANDLES */
+
+.candle {
+    position: absolute;
+
+    bottom: 130px;
+
+    width: 13px;
+    height: 48px;
+
+    background:
+        linear-gradient(90deg,
+        #e6c36c,
+        #fff0ae,
+        #b8892f);
+
+    border-radius: 4px;
+
+    z-index: 5;
+}
+
+.candle:nth-child(1) {
+    left: 55px;
+}
+
+.candle:nth-child(2) {
+    left: 95px;
+}
+
+.candle:nth-child(3) {
+    left: 135px;
+}
+
+.flame {
+    position: absolute;
+
+    width: 17px;
+    height: 25px;
+
+    background:
+        radial-gradient(circle,
+        #fff4a8 10%,
+        #e4a52f 55%,
+        transparent 70%);
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    top: -23px;
+    left: -2px;
+
+    box-shadow:
+        0 0 20px #e6b943;
+
+    animation: flicker .5s infinite alternate;
+}
+
+@keyframes flicker {
+    from {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    to {
+        transform: rotate(-45deg) scale(1.15);
+    }
+}
+
+.candles-out .flame {
+    display: none;
+}
+
+.small-text {
+    color: #bca9c8;
+    font-size: 14px;
+}
+
+/* ---------------- PHOTO ---------------- */
+
+.photo-frame {
+    width: min(88vw, 360px);
+
+    max-height: 61vh;
+
+    padding: 7px;
+
+    background:
+        linear-gradient(135deg,
+        #e5c875,
+        #8f6722,
+        #f0d994);
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.7),
+        0 0 40px rgba(177,120,33,.18);
+
+    animation: photoReveal 1.5s ease;
+}
+
+.photo-frame img {
+    display: block;
+
+    width: 100%;
+
+    max-height: 59vh;
+
+    object-fit: cover;
+
+    border-radius: 3px;
+}
+
+@keyframes photoReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(.82) translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ---------------- MESSAGE ---------------- */
+
+.message {
+    max-width: 370px;
+    margin-top: 22px;
+}
+
+.message h1 {
+    font-size: 29px;
+
+    margin-bottom: 15px;
+
+    font-weight: normal;
+
+    color: #e7c66d;
+
+    text-shadow:
+        0 0 20px rgba(220,174,68,.3);
+}
+
+.message p {
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #e8deed;
+}
+
+.signature {
+    margin-top: 18px;
+
+    font-size: 14px;
+
+    color: #a995b5;
+
+    font-style: italic;
+}
+
+/* ---------------- CONFETTI ---------------- */
+
+.confetti {
+    position: fixed;
+
+    width: 7px;
+    height: 13px;
+
+    top: -20px;
+
+    z-index: 100;
+
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* ---------------- FINAL GLOW ---------------- */
+
+.gold-glow {
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(126,55,190,.12);
+
+    filter: blur(80px);
+
+    pointer-events: none;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:500px) {
+
+    .intro-text {
+        font-size: 21px;
+    }
+
+    .envelope {
+        width: 250px;
+        height: 165px;
+    }
+
+    .flap {
+        border-left-width: 125px;
+        border-right-width: 125px;
+        border-top-width: 95px;
+    }
+
+    .letter {
+        max-width: 310px;
+    }
+
+    .message h1 {
+        font-size: 27px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="gold-glow" style="top:-100px;left:-100px;"></div>
+<div class="gold-glow" style="bottom:-150px;right:-100px;"></div>
+
+
+<!-- INTRO -->
+
+<section class="screen active" id="screen1">
+
+    <div class="intro-text">
+        I made a little something for you...
+    </div>
+
+    <div class="envelope" id="envelope">
+
+        <div class="envelope-body"></div>
+
+        <div class="flap"></div>
+
+        <div class="seal">
+            ♛
+        </div>
+
+    </div>
+
+    <div class="intro-sub">
+        something special awaits
+    </div>
+
+    <button class="button" onclick="openEnvelope()">
+        Open this 💌
+    </button>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section class="screen" id="screen2">
+
+    <div class="letter">
+
+        <h2>For you ✦</h2>
+
+        <p>
+            Okay... I actually put a little effort into this.
+            So take a moment, and keep going.
+        </p>
+
+    </div>
+
+    <button class="button" onclick="showCake()">
+        Continue →
+    </button>
+
+</section>
+
+
+<!-- CAKE -->
+
+<section class="screen" id="screen3">
+
+    <div class="cake-title">
+        Make a wish ✨
+    </div>
+
+    <div class="cake-area" id="cakeArea">
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="cake">
+
+            <div class="cream"></div>
+
+        </div>
+
+    </div>
+
+    <div class="small-text">
+        Close your eyes... make a wish...
+    </div>
+
+    <button class="button" onclick="blowCandles()">
+        CLICK TO BLOWW THE CANDLES 🕯️
+    </button>
+
+</section>
+
+
+<!-- PHOTO -->
+
+<section class="screen" id="screen4">
+
+    <div class="photo-frame">
+
+        <img src="suhani.jpg" alt="Birthday Queen">
+
+    </div>
+
+    <div class="message">
+
+        <h1>
+            Happy Birthday, Suhani 🤍
+        </h1>
+
+        <p>
+            I hope this year brings you beautiful moments,
+            genuine happiness, and countless reasons to smile.
+            May you find little pieces of magic in ordinary days,
+            and may the things you wish for slowly find their way to you.
+        </p>
+
+        <div class="signature">
+            — someone who wanted to make your day a little special
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* ---------------- SCREEN CONTROL ---------------- */
+
+function changeScreen(from, to) {
+
+    document
+        .getElementById(from)
+        .classList.remove("active");
+
+    setTimeout(() => {
+
+        document
+            .getElementById(to)
+            .classList.add("active");
+
+    }, 350);
+}
+
+
+/* ---------------- ENVELOPE ---------------- */
+
+function openEnvelope() {
+
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+
+        changeScreen("screen1", "screen2");
+
+    }, 1100);
+}
+
+
+/* ---------------- CAKE ---------------- */
+
+function showCake() {
+
+    changeScreen("screen2", "screen3");
+
+}
+
+
+/* ---------------- CANDLES ---------------- */
+
+function blowCandles() {
+
+    document
+        .getElementById("cakeArea")
+        .classList.add("candles-out");
+
+    createConfetti();
+
+    setTimeout(() => {
+
+        changeScreen("screen3", "screen4");
+
+    }, 2200);
+}
+
+
+/* ---------------- CONFETTI ---------------- */
+
+function createConfetti() {
+
+    const pieces = 120;
+
+    for(let i = 0; i < pieces; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        piece.style.background =
+            [
+                "#d7b45a",
+                "#f1d58a",
+                "#ffffff",
+                "#8c4dcc",
+                "#5f2691"
+            ][Math.floor(Math.random() * 5)];
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 5500);
+
+    }
+}
+
+
+/* ---------------- STARS ---------------- */
+
+for(let i = 0; i < 35; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "vw";
+
+    star.style.top =
+        Math.random() * 100 + "vh";
+
+    star.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    document.body.appendChild(star);
+
+}
+
+</script>
+
+</body>
+</html>
