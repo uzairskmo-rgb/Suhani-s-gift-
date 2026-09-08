@@ -9,7 +9,7 @@
 <style>
 
 /* =========================================================
-   BASIC
+   RESET
 ========================================================= */
 
 * {
@@ -38,8 +38,8 @@ body {
         radial-gradient(
             circle at 50% 20%,
             #32145c 0%,
-            #170b2c 38%,
-            #050507 78%
+            #170b2c 40%,
+            #050507 85%
         );
 }
 
@@ -50,8 +50,10 @@ body {
 
 .screen {
     position: absolute;
-
     inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -69,14 +71,13 @@ body {
     transform: scale(1.04);
 
     transition:
-        opacity .9s ease,
-        transform .9s ease;
+        opacity .8s ease,
+        transform .8s ease;
 }
 
 .screen.active {
     opacity: 1;
     pointer-events: auto;
-
     transform: scale(1);
 }
 
@@ -99,6 +100,8 @@ body {
 
     animation:
         twinkle 2s infinite alternate;
+
+    pointer-events: none;
 }
 
 @keyframes twinkle {
@@ -141,7 +144,6 @@ body {
 ========================================================= */
 
 .intro-text {
-
     font-size: 24px;
 
     letter-spacing: 1px;
@@ -155,7 +157,6 @@ body {
 }
 
 .intro-sub {
-
     margin-top: 12px;
 
     font-size: 13px;
@@ -171,7 +172,6 @@ body {
 ========================================================= */
 
 .envelope {
-
     width: 275px;
     height: 180px;
 
@@ -186,9 +186,7 @@ body {
 }
 
 .envelope-body {
-
     position: absolute;
-
     inset: 0;
 
     border-radius: 7px;
@@ -208,11 +206,9 @@ body {
 }
 
 .envelope-body::before {
-
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -233,7 +229,6 @@ body {
 }
 
 .flap {
-
     position: absolute;
 
     top: 0;
@@ -257,21 +252,13 @@ body {
         transform 1s ease;
 
     z-index: 4;
-
-    filter:
-        drop-shadow(
-            0 3px 2px rgba(0,0,0,.3)
-        );
 }
 
 .envelope.open .flap {
-
-    transform:
-        rotateX(180deg);
+    transform: rotateX(180deg);
 }
 
 .seal {
-
     position: absolute;
 
     left: 50%;
@@ -314,7 +301,6 @@ body {
 }
 
 .envelope.open .seal {
-
     opacity: 0;
 }
 
@@ -324,7 +310,6 @@ body {
 ========================================================= */
 
 .button {
-
     margin-top: 36px;
 
     padding:
@@ -360,23 +345,14 @@ body {
 }
 
 .button:hover {
-
     transform:
         translateY(-3px);
 
     box-shadow:
         0 0 28px rgba(146,72,220,.4);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(130,65,205,.5),
-            rgba(35,15,50,.8)
-        );
 }
 
 .button:active {
-
     transform:
         translateY(0);
 }
@@ -387,8 +363,7 @@ body {
 ========================================================= */
 
 .letter {
-
-    max-width: 330px;
+    width: min(330px, 90vw);
 
     padding:
         38px 27px;
@@ -416,7 +391,6 @@ body {
 }
 
 .letter h2 {
-
     margin-bottom: 20px;
 
     font-size: 26px;
@@ -427,72 +401,395 @@ body {
 }
 
 .letter p {
-
     line-height: 1.8;
 
     font-size: 16px;
 
     color: #ded2e8;
 }
-<!-- SCREEN 3 — CAKE -->
 
-<section class="screen" id="screen3">
 
-    <div class="cake-title">
-        Make a wish ✨
-    </div>
+/* =========================================================
+   CAKE TITLE
+========================================================= */
 
-    <div class="cake-area" id="cakeArea">
+.cake-title {
+    font-size: 25px;
 
-        <div class="candle candle1">
-            <div class="flame"></div>
-        </div>
+    color: #e9ca78;
 
-        <div class="candle candle2">
-            <div class="flame"></div>
-        </div>
+    margin-bottom: 12px;
 
-        <div class="candle candle3">
-            <div class="flame"></div>
-        </div>
+    text-shadow:
+        0 0 20px rgba(210,160,50,.4);
+}
 
-        <div class="candle candle4">
-            <div class="flame"></div>
-        </div>
 
-        <div class="candle candle5">
-            <div class="flame"></div>
-        </div>
+/* =========================================================
+   CAKE AREA
+========================================================= */
 
-        <div class="cake">
+.cake-area {
+    position: relative;
 
-            <div class="cream"></div>
+    width: 300px;
+    height: 285px;
 
-            <div class="drip drip1"></div>
-            <div class="drip drip2"></div>
-            <div class="drip drip3"></div>
-            <div class="drip drip4"></div>
+    flex-shrink: 0;
+}
 
-            <div class="cake-decoration dot1"></div>
-            <div class="cake-decoration dot2"></div>
-            <div class="cake-decoration dot3"></div>
-            <div class="cake-decoration dot4"></div>
-            <div class="cake-decoration dot5"></div>
 
-        </div>
+/* =========================================================
+   CAKE BODY
+========================================================= */
 
-    </div>
+.cake {
+    position: absolute;
 
-    <div class="small-text">
-        Close your eyes... make a wish...
-    </div>
+    left: 35px;
+    bottom: 25px;
 
-    <button class="button" onclick="blowCandles()">
-        CLICK TO BLOWW THE CANDLES 🕯️
-    </button>
+    width: 230px;
+    height: 110px;
 
-</section>
+    border-radius:
+        12px 12px 22px 22px;
 
+    background:
+        linear-gradient(
+            90deg,
+            #241033 0%,
+            #542276 45%,
+            #351447 100%
+        );
+
+    border:
+        1px solid #c99b3d;
+
+    box-shadow:
+        inset 0 -25px 25px rgba(0,0,0,.25),
+        0 18px 35px rgba(0,0,0,.6);
+}
+
+
+/* =========================================================
+   CAKE TOP
+========================================================= */
+
+.cake::before {
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: -30px;
+
+    width: 230px;
+    height: 62px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #fffdf5 0%,
+            #f8e9cb 58%,
+            #d5b66f 100%
+        );
+
+    border:
+        1px solid #c99b3d;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.35);
+}
+
+
+/* =========================================================
+   CREAM
+========================================================= */
+
+.cream {
+    position: absolute;
+
+    left: 0;
+    top: -22px;
+
+    width: 230px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffef8,
+            #f4e4c7
+        );
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   CREAM DRIPS
+========================================================= */
+
+.drip {
+    position: absolute;
+
+    top: -7px;
+
+    width: 18px;
+    height: 32px;
+
+    background: #fff8e9;
+
+    border-radius:
+        0 0 12px 12px;
+
+    z-index: 4;
+}
+
+.drip1 {
+    left: 35px;
+}
+
+.drip2 {
+    left: 82px;
+    height: 24px;
+}
+
+.drip3 {
+    left: 135px;
+    height: 35px;
+}
+
+.drip4 {
+    right: 32px;
+    height: 25px;
+}
+
+
+/* =========================================================
+   GOLD CAKE LINE
+========================================================= */
+
+.cake::after {
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+    bottom: 25px;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #e2c269,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   CAKE DECORATION
+========================================================= */
+
+.cake-decoration {
+    position: absolute;
+
+    bottom: 48px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        #e7c76b;
+
+    box-shadow:
+        0 0 8px rgba(231,199,107,.6);
+
+    z-index: 5;
+}
+
+.dot1 {
+    left: 35px;
+}
+
+.dot2 {
+    left: 78px;
+}
+
+.dot3 {
+    left: 112px;
+}
+
+.dot4 {
+    left: 148px;
+}
+
+.dot5 {
+    left: 190px;
+}
+
+
+/* =========================================================
+   FIVE CANDLES
+========================================================= */
+
+.candle {
+    position: absolute;
+
+    bottom: 135px;
+
+    width: 16px;
+    height: 55px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b77d1d,
+            #fff0a3 45%,
+            #d5a73d
+        );
+
+    border:
+        1px solid #e8c96b;
+
+    z-index: 10;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.35);
+}
+
+.candle1 {
+    left: 48px;
+    height: 46px;
+}
+
+.candle2 {
+    left: 88px;
+    height: 58px;
+}
+
+.candle3 {
+    left: 127px;
+    height: 68px;
+}
+
+.candle4 {
+    left: 166px;
+    height: 58px;
+}
+
+.candle5 {
+    left: 206px;
+    height: 46px;
+}
+
+
+/* =========================================================
+   WICKS
+========================================================= */
+
+.candle::before {
+    content: "";
+
+    position: absolute;
+
+    top: -6px;
+    left: 6px;
+
+    width: 3px;
+    height: 8px;
+
+    background: #302019;
+}
+
+
+/* =========================================================
+   FLAMES
+========================================================= */
+
+.flame {
+    position: absolute;
+
+    width: 22px;
+    height: 30px;
+
+    left: -3px;
+    top: -31px;
+
+    border-radius:
+        50% 50% 50% 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #fffde0 0%,
+            #ffd84f 35%,
+            #ed9e21 65%,
+            transparent 72%
+        );
+
+    transform:
+        rotate(-45deg);
+
+    filter:
+        drop-shadow(0 0 7px #ffd34d)
+        drop-shadow(0 0 17px #e99e25);
+
+    animation:
+        flicker .55s infinite alternate;
+}
+
+@keyframes flicker {
+
+    from {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+
+    to {
+        transform:
+            rotate(-45deg)
+            scale(1.15);
+    }
+}
+
+.candles-out .flame {
+    opacity: 0;
+
+    transform:
+        rotate(-45deg)
+        scale(.2);
+
+    transition:
+        .4s ease;
+}
+
+
+/* =========================================================
+   CAKE SMALL TEXT
+========================================================= */
+
+.small-text {
+    color: #bca9c8;
+
+    font-size: 14px;
+
+    flex-shrink: 0;
+}
 
 
 /* =========================================================
@@ -500,7 +797,6 @@ body {
 ========================================================= */
 
 .confetti {
-
     position: fixed;
 
     width: 7px;
@@ -517,7 +813,6 @@ body {
 @keyframes fall {
 
     to {
-
         transform:
             translateY(110vh)
             rotate(720deg);
@@ -529,13 +824,16 @@ body {
    PHOTO
 ========================================================= */
 
+#screen4 {
+    overflow-y: auto;
+    justify-content: flex-start;
+
+    padding-top: 25px;
+    padding-bottom: 30px;
+}
+
 .photo-frame {
-
-    width:
-        min(88vw, 360px);
-
-    max-height:
-        61vh;
+    width: min(88vw, 360px);
 
     padding: 7px;
 
@@ -550,27 +848,20 @@ body {
     border-radius: 6px;
 
     box-shadow:
-
-        0 20px 80px
-        rgba(0,0,0,.7),
-
-        0 0 40px
-        rgba(177,120,33,.18);
+        0 20px 80px rgba(0,0,0,.7),
+        0 0 40px rgba(177,120,33,.18);
 
     animation:
-        photoReveal 1.5s ease;
+        photoReveal 1.2s ease;
+
+    flex-shrink: 0;
 }
 
 .photo-frame img {
-
     display: block;
 
     width: 100%;
-
-    max-height:
-        59vh;
-
-    object-fit: cover;
+    height: auto;
 
     border-radius: 3px;
 }
@@ -578,7 +869,6 @@ body {
 @keyframes photoReveal {
 
     from {
-
         opacity: 0;
 
         transform:
@@ -587,7 +877,6 @@ body {
     }
 
     to {
-
         opacity: 1;
 
         transform:
@@ -602,14 +891,16 @@ body {
 ========================================================= */
 
 .message {
+    width: min(370px, 90vw);
 
-    max-width: 370px;
+    margin-top: 20px;
 
-    margin-top: 22px;
+    padding-bottom: 20px;
+
+    flex-shrink: 0;
 }
 
 .message h1 {
-
     font-size: 29px;
 
     margin-bottom: 15px;
@@ -619,12 +910,10 @@ body {
     color: #e7c66d;
 
     text-shadow:
-        0 0 20px
-        rgba(220,174,68,.3);
+        0 0 20px rgba(220,174,68,.3);
 }
 
 .message p {
-
     font-size: 15px;
 
     line-height: 1.8;
@@ -633,7 +922,6 @@ body {
 }
 
 .signature {
-
     margin-top: 18px;
 
     font-size: 14px;
@@ -645,53 +933,249 @@ body {
 
 
 /* =========================================================
-   MOBILE
+   MOBILE — IMPORTANT
 ========================================================= */
 
-@media(max-width:500px) {
+@media (max-width: 500px) {
+
+    /* ---------- GENERAL ---------- */
+
+    .screen {
+        padding:
+            20px 15px;
+    }
+
+
+    /* ---------- INTRO ---------- */
+
+    #screen1 {
+        justify-content: center;
+    }
 
     .intro-text {
-
         font-size: 21px;
+
+        margin-bottom: 32px;
     }
 
     .envelope {
-
         width: 250px;
         height: 165px;
     }
 
     .flap {
-
         border-left-width: 125px;
         border-right-width: 125px;
         border-top-width: 95px;
     }
 
+    .intro-sub {
+        font-size: 12px;
+    }
+
+
+    /* ---------- LETTER ---------- */
+
     .letter {
+        width: 90vw;
 
-        max-width: 310px;
+        padding:
+            32px 23px;
     }
 
-    .message h1 {
-
-        font-size: 27px;
+    .letter h2 {
+        font-size: 24px;
     }
 
-    .cake-area {
-
-        transform:
-            scale(.9);
+    .letter p {
+        font-size: 15px;
     }
 
-    .cake-title {
 
-        margin-bottom: 2px;
+    /* ---------- CAKE SCREEN ---------- */
+
+    #screen3 {
+        justify-content: flex-start;
+
+        padding-top: 105px;
     }
 
-    .small-text {
+    #screen3 .cake-title {
+        font-size: 23px;
 
-        margin-top: -12px;
+        margin-bottom: 5px;
+    }
+
+    #screen3 .cake-area {
+        width: 270px;
+        height: 255px;
+
+        margin: 0 auto;
+
+        transform: none;
+    }
+
+    #screen3 .cake {
+        left: 20px;
+        bottom: 12px;
+
+        width: 230px;
+        height: 105px;
+    }
+
+    #screen3 .cake::before {
+        width: 230px;
+        height: 58px;
+    }
+
+    #screen3 .cream {
+        width: 230px;
+    }
+
+
+    /* MOBILE CANDLES */
+
+    #screen3 .candle1 {
+        left: 32px;
+        bottom: 122px;
+    }
+
+    #screen3 .candle2 {
+        left: 72px;
+        bottom: 122px;
+    }
+
+    #screen3 .candle3 {
+        left: 111px;
+        bottom: 122px;
+    }
+
+    #screen3 .candle4 {
+        left: 150px;
+        bottom: 122px;
+    }
+
+    #screen3 .candle5 {
+        left: 190px;
+        bottom: 122px;
+    }
+
+
+    /* MOBILE TEXT */
+
+    #screen3 .small-text {
+        margin-top: 0;
+
+        font-size: 13px;
+    }
+
+
+    /* MOBILE BUTTON */
+
+    #screen3 .button {
+        width: 88vw;
+
+        max-width: 375px;
+
+        margin-top: 22px;
+
+        padding:
+            13px 12px;
+
+        font-size: 14px;
+
+        line-height: 1.3;
+    }
+
+
+    /* ---------- PHOTO SCREEN ---------- */
+
+    #screen4 {
+        justify-content: flex-start;
+
+        overflow-y: auto;
+
+        padding:
+            20px 12px 30px;
+    }
+
+    #screen4 .photo-frame {
+        width: 88vw;
+
+        max-width: 370px;
+
+        padding: 6px;
+    }
+
+    #screen4 .photo-frame img {
+        width: 100%;
+        height: auto;
+
+        object-fit: contain;
+    }
+
+    #screen4 .message {
+        width: 90vw;
+
+        max-width: 370px;
+
+        margin-top: 17px;
+
+        padding-bottom: 25px;
+    }
+
+    #screen4 .message h1 {
+        font-size: 26px;
+
+        line-height: 1.25;
+
+        margin-bottom: 11px;
+    }
+
+    #screen4 .message p {
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    #screen4 .signature {
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        margin-top: 15px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-height: 700px) and (max-width: 500px) {
+
+    #screen3 {
+        padding-top: 55px;
+    }
+
+    #screen3 .cake-area {
+        transform: scale(.82);
+
+        margin-top: -10px;
+
+        margin-bottom: -30px;
+    }
+
+    #screen3 .button {
+        margin-top: 12px;
+    }
+
+    #screen4 {
+        padding-top: 12px;
+    }
+
+    #screen4 .message {
+        margin-top: 12px;
     }
 }
 
@@ -734,16 +1218,11 @@ body {
         class="envelope"
         id="envelope">
 
-        <div
-            class="envelope-body">
-        </div>
+        <div class="envelope-body"></div>
 
-        <div
-            class="flap">
-        </div>
+        <div class="flap"></div>
 
-        <div
-            class="seal">
+        <div class="seal">
             ♛
         </div>
 
@@ -764,7 +1243,6 @@ body {
     </button>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -800,7 +1278,6 @@ body {
 </section>
 
 
-
 <!-- =====================================================
      SCREEN 3 — CAKE
 ===================================================== -->
@@ -821,50 +1298,45 @@ body {
 
         <!-- CANDLE 1 -->
 
-        <div class="candle">
+        <div class="candle candle1">
 
-            <div class="flame">
-            </div>
+            <div class="flame"></div>
 
         </div>
 
 
         <!-- CANDLE 2 -->
 
-        <div class="candle">
+        <div class="candle candle2">
 
-            <div class="flame">
-            </div>
+            <div class="flame"></div>
 
         </div>
 
 
         <!-- CANDLE 3 -->
 
-        <div class="candle">
+        <div class="candle candle3">
 
-            <div class="flame">
-            </div>
+            <div class="flame"></div>
 
         </div>
 
 
         <!-- CANDLE 4 -->
 
-        <div class="candle">
+        <div class="candle candle4">
 
-            <div class="flame">
-            </div>
+            <div class="flame"></div>
 
         </div>
 
 
         <!-- CANDLE 5 -->
 
-        <div class="candle">
+        <div class="candle candle5">
 
-            <div class="flame">
-            </div>
+            <div class="flame"></div>
 
         </div>
 
@@ -873,24 +1345,18 @@ body {
 
         <div class="cake">
 
-            <div class="cream">
-            </div>
+            <div class="cream"></div>
 
+            <div class="drip drip1"></div>
+            <div class="drip drip2"></div>
+            <div class="drip drip3"></div>
+            <div class="drip drip4"></div>
 
-            <div class="cake-decoration dot1">
-            </div>
-
-            <div class="cake-decoration dot2">
-            </div>
-
-            <div class="cake-decoration dot3">
-            </div>
-
-            <div class="cake-decoration dot4">
-            </div>
-
-            <div class="cake-decoration dot5">
-            </div>
+            <div class="cake-decoration dot1"></div>
+            <div class="cake-decoration dot2"></div>
+            <div class="cake-decoration dot3"></div>
+            <div class="cake-decoration dot4"></div>
+            <div class="cake-decoration dot5"></div>
 
         </div>
 
@@ -913,9 +1379,8 @@ body {
 </section>
 
 
-
 <!-- =====================================================
-     SCREEN 4 — PHOTO + BIRTHDAY MESSAGE
+     SCREEN 4 — PHOTO + MESSAGE
 ===================================================== -->
 
 <section
@@ -957,9 +1422,7 @@ body {
 </section>
 
 
-
 <script>
-
 
 /* =========================================================
    CHANGE SCREEN
@@ -982,7 +1445,6 @@ function changeScreen(from, to) {
 
     }, 350);
 }
-
 
 
 /* =========================================================
@@ -1009,7 +1471,6 @@ function openEnvelope() {
 }
 
 
-
 /* =========================================================
    SHOW CAKE
 ========================================================= */
@@ -1023,17 +1484,17 @@ function showCake() {
 }
 
 
-
 /* =========================================================
    BLOW CANDLES
 ========================================================= */
 
 function blowCandles() {
 
-    document
-        .getElementById("cakeArea")
-        .classList
-        .add("candles-out");
+    const cakeArea =
+        document.getElementById("cakeArea");
+
+
+    cakeArea.classList.add("candles-out");
 
 
     createConfetti();
@@ -1048,7 +1509,6 @@ function blowCandles() {
 
     }, 2200);
 }
-
 
 
 /* =========================================================
@@ -1108,7 +1568,6 @@ function createConfetti() {
 
     }
 }
-
 
 
 /* =========================================================
