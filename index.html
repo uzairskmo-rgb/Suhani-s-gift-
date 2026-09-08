@@ -434,413 +434,65 @@ body {
 
     color: #ded2e8;
 }
+<!-- SCREEN 3 — CAKE -->
 
+<section class="screen" id="screen3">
 
-/* =========================================================
-   CAKE TITLE
-========================================================= */
+    <div class="cake-title">
+        Make a wish ✨
+    </div>
 
-.cake-title {
+    <div class="cake-area" id="cakeArea">
 
-    font-size: 25px;
+        <div class="candle candle1">
+            <div class="flame"></div>
+        </div>
 
-    color: #e9ca78;
+        <div class="candle candle2">
+            <div class="flame"></div>
+        </div>
 
-    margin-bottom: 15px;
+        <div class="candle candle3">
+            <div class="flame"></div>
+        </div>
 
-    text-shadow:
-        0 0 20px rgba(210,160,50,.4);
-}
+        <div class="candle candle4">
+            <div class="flame"></div>
+        </div>
 
+        <div class="candle candle5">
+            <div class="flame"></div>
+        </div>
 
-/* =========================================================
-   CAKE AREA
-========================================================= */
+        <div class="cake">
 
-.cake-area {
+            <div class="cream"></div>
 
-    position: relative;
+            <div class="drip drip1"></div>
+            <div class="drip drip2"></div>
+            <div class="drip drip3"></div>
+            <div class="drip drip4"></div>
 
-    width: 280px;
-    height: 300px;
+            <div class="cake-decoration dot1"></div>
+            <div class="cake-decoration dot2"></div>
+            <div class="cake-decoration dot3"></div>
+            <div class="cake-decoration dot4"></div>
+            <div class="cake-decoration dot5"></div>
 
-    margin-bottom: 10px;
-}
+        </div>
 
+    </div>
 
-/* =========================================================
-   CAKE BASE
-========================================================= */
+    <div class="small-text">
+        Close your eyes... make a wish...
+    </div>
 
-.cake {
+    <button class="button" onclick="blowCandles()">
+        CLICK TO BLOWW THE CANDLES 🕯️
+    </button>
 
-    position: absolute;
+</section>
 
-    bottom: 28px;
-    left: 40px;
-
-    width: 200px;
-    height: 105px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #241034,
-            #54207a 45%,
-            #321348
-        );
-
-    border:
-        1px solid #c89b3c;
-
-    border-radius:
-        10px 10px 22px 22px;
-
-    box-shadow:
-
-        0 18px 30px
-        rgba(0,0,0,.55),
-
-        inset 0 -20px 20px
-        rgba(0,0,0,.2);
-}
-
-
-/* =========================================================
-   CAKE TOP
-========================================================= */
-
-.cake::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: -28px;
-    left: -1px;
-
-    width: 200px;
-    height: 55px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            #fff8e9 0%,
-            #f4e4c5 65%,
-            #d5b978 100%
-        );
-
-    border:
-        1px solid #c89b3c;
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 5px 12px rgba(0,0,0,.3);
-}
-
-
-/* =========================================================
-   CREAM
-========================================================= */
-
-.cream {
-
-    position: absolute;
-
-    top: 3px;
-    left: 0;
-
-    width: 200px;
-    height: 30px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            #fffdf7,
-            #f2dfc0
-        );
-
-    z-index: 2;
-}
-
-
-/* Cream drips */
-
-.cream::before,
-.cream::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 12px;
-
-    width: 14px;
-    height: 25px;
-
-    background:
-        #fff8eb;
-
-    border-radius:
-        0 0 10px 10px;
-}
-
-.cream::before {
-
-    left: 35px;
-}
-
-.cream::after {
-
-    right: 45px;
-}
-
-
-/* =========================================================
-   GOLD CAKE DETAIL
-========================================================= */
-
-.cake::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 25px;
-
-    width: 100%;
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #d8b35a,
-            transparent
-        );
-
-    opacity: .8;
-}
-
-
-/* =========================================================
-   CAKE DECORATION DOTS
-========================================================= */
-
-.cake-decoration {
-
-    position: absolute;
-
-    bottom: 49px;
-
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background:
-        #e4c66c;
-
-    box-shadow:
-        0 0 8px rgba(228,198,108,.5);
-
-    z-index: 5;
-}
-
-.dot1 {
-    left: 70px;
-}
-
-.dot2 {
-    left: 98px;
-}
-
-.dot3 {
-    left: 126px;
-}
-
-.dot4 {
-    left: 154px;
-}
-
-.dot5 {
-    left: 182px;
-}
-
-
-/* =========================================================
-   CANDLES
-========================================================= */
-
-.candle {
-
-    position: absolute;
-
-    bottom: 133px;
-
-    width: 14px;
-    height: 52px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #b88628,
-            #fff0a6 45%,
-            #d4a940
-        );
-
-    border-radius: 5px;
-
-    border:
-        1px solid #e7c96d;
-
-    z-index: 6;
-
-    box-shadow:
-        0 3px 7px rgba(0,0,0,.3);
-}
-
-
-/* Five candle positions */
-
-.candle:nth-child(1) {
-
-    left: 60px;
-
-    height: 45px;
-}
-
-.candle:nth-child(2) {
-
-    left: 92px;
-
-    height: 55px;
-}
-
-.candle:nth-child(3) {
-
-    left: 125px;
-
-    height: 65px;
-}
-
-.candle:nth-child(4) {
-
-    left: 158px;
-
-    height: 55px;
-}
-
-.candle:nth-child(5) {
-
-    left: 190px;
-
-    height: 45px;
-}
-
-
-/* =========================================================
-   CANDLE WICKS
-========================================================= */
-
-.candle::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: -5px;
-    left: 5px;
-
-    width: 3px;
-    height: 7px;
-
-    background:
-        #30201a;
-}
-
-
-/* =========================================================
-   FLAMES
-========================================================= */
-
-.flame {
-
-    position: absolute;
-
-    width: 20px;
-    height: 28px;
-
-    top: -29px;
-    left: -3px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            #fffbd0 0%,
-            #ffd95a 35%,
-            #e79a24 65%,
-            transparent 72%
-        );
-
-    border-radius:
-        50% 50% 50% 0;
-
-    transform:
-        rotate(-45deg);
-
-    filter:
-        drop-shadow(
-            0 0 8px #f6c84c
-        )
-        drop-shadow(
-            0 0 18px #e7a82c
-        );
-
-    animation:
-        flicker .55s infinite alternate;
-}
-
-@keyframes flicker {
-
-    from {
-
-        transform:
-            rotate(-45deg)
-            scale(1);
-    }
-
-    to {
-
-        transform:
-            rotate(-45deg)
-            scale(1.15);
-    }
-}
-
-
-/* Candles disappear when blown */
-
-.candles-out .flame {
-
-    display: none;
-}
-
-
-/* =========================================================
-   SMALL CAKE TEXT
-========================================================= */
-
-.small-text {
-
-    color: #bca9c8;
-
-    font-size: 14px;
-}
 
 
 /* =========================================================
